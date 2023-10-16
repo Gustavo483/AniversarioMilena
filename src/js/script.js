@@ -1,7 +1,5 @@
-// Defina a data-alvo da contagem regressiva (ano, mês, dia, hora, minuto, segundo)
-const targetDate = new Date('2023-12-08 00:00:00').getTime();
 
-// Função para atualizar o contador
+const targetDate = new Date('2023-12-08 00:00:00').getTime();
 function updateCountdown() {
     const currentDate = new Date().getTime();
     const timeRemaining = targetDate - currentDate;
@@ -22,9 +20,26 @@ function updateCountdown() {
         countdownElement.innerHTML = 'Tempo esgotado!';
     }
 }
-
-// Atualize a contagem regressiva a cada segundo
 setInterval(updateCountdown, 1000);
-
-// Garanta que a contagem seja atualizada imediatamente na página
 updateCountdown();
+
+$("#button").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#anchor").offset().top
+    });
+});
+
+function ConfirmarPresenca(){
+    const  Full_name = document.getElementById('Full_name').value
+    const token = "6451367922:AAHkpC3tCzo1G1vwiQhmfMlTWh3ydoY0gWQ"
+
+    const chat_id = "6411144351"
+
+    var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${Full_name}`
+
+    let api = new XMLHttpRequest()
+    api.open("get", url, true)
+    api.send()
+    Full_name.value = 'teste'
+    document.getElementById('DivConfirmacao').classList.remove('enviado')
+}
